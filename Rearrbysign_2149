@@ -1,0 +1,52 @@
+Rearrange - Every consecutive pair of integers have opposite signs.
+For all integers with the same sign, the order in which they were present in nums is preserved.
+The rearranged array begins with a positive integer.
+
+My code - - 
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int l = nums.length;
+        int [] arr = new int[l];
+        int k=0;
+        for(int i=0;i<l;i++){
+            if(nums[i]>0){
+                arr[k]=nums[i];
+                k=k+2;
+            }
+        }
+        k=1;
+        for(int i=0;i<l;i++){
+            if(nums[i]<0){
+                arr[k]=nums[i];
+                k=k+2;}
+        }
+        return arr;
+    }
+}
+
+Optimised version - 
+
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int n = nums.length;
+        int postIndex = 0;
+        int negaIndex = 1;
+        int[] ans = new int[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] < 0)
+            {
+                ans[negaIndex] = nums[i];
+                negaIndex += 2;
+            }
+            else
+            {
+                ans[postIndex] = nums[i];
+                postIndex += 2;
+            }
+        }
+
+        return ans;
+    }
+}
